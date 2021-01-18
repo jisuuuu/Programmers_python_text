@@ -1,0 +1,31 @@
+def solution(numbers, hand)
+    answer = ''
+    
+    now_right = 12
+    now_left = 10
+    
+    for i, n in enumerate(numbers)
+        if n in [1, 4, 7]
+            answer += 'L'
+            now_left = n
+        elif n in [3, 6, 9]
+            answer += 'R'
+            now_right = n
+        else
+            if n == 0
+                n = 11
+            
+            if sum(divmod(abs(now_right - n), 3))  sum(divmod(abs(now_left - n), 3))
+                answer += 'L'
+                now_left = n
+            elif sum(divmod(abs(now_right - n), 3))  sum(divmod(abs(now_left - n), 3))
+                answer += 'R'
+                now_right = n
+            else
+                if hand == 'right'
+                    answer += 'R'
+                    now_right = n
+                else
+                    answer += 'L'
+                    now_left = n
+    return answer
